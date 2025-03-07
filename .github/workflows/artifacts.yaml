@@ -100,12 +100,12 @@ jobs:
           if_true: type=image,push=true
           if_false: type=oci,dest=image.tar
 
-      - name: Login to GitHub Container Registry
+      - name: Login to dockerhub
         uses: docker/login-action@9780b0c442fbb1117ed29e0efdff1e18412f7567 # v3.3.0
         with:
-          registry: ghcr.io
-          username: ${{ github.actor }}
-          password: ${{ github.token }}
+          registry: hub.docker.com
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
         if: inputs.publish
 
       - name: Login to Docker Hub
