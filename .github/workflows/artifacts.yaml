@@ -125,11 +125,6 @@ jobs:
           outputs: ${{ steps.build-output.outputs.value }}
           # push: ${{ inputs.publish }}
 
-      - name: Sign the images with GitHub OIDC Token
-        run: |
-          cosign sign --yes ${{ steps.image-name.outputs.value }}@${{ steps.build.outputs.digest }}
-        if: inputs.publish
-
       - name: Set image ref
         id: image-ref
         run: echo "value=${{ steps.image-name.outputs.value }}@${{ steps.build.outputs.digest }}" >> "$GITHUB_OUTPUT"
