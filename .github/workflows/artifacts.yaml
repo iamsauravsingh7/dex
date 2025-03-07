@@ -67,7 +67,7 @@ jobs:
 
       - name: Set image name
         id: image-name
-        run: echo "value=ghcr.io/${{ github.repository }}" >> "$GITHUB_OUTPUT"
+        run: echo "value=${{ github.repository }}" >> "$GITHUB_OUTPUT"
 
       - name: Gather build metadata
         id: meta
@@ -186,7 +186,7 @@ jobs:
       - name: Generate build provenance attestation
         uses: actions/attest-build-provenance@520d128f165991a6c774bcb264f323e3d70747f4 # v2.2.0
         with:
-          subject-name: ghcr.io/dexidp/dex
+          subject-name: dexidp/dex
           subject-digest: ${{ steps.build.outputs.digest }}
           push-to-registry: true
         if: inputs.publish
